@@ -36,13 +36,8 @@ function draw() {
 
   // helper to see mouse location
   text("(" + mouseX + ", " + mouseY + ")", mouseX + 10, mouseY - 10);
-
-  if (clicked) {
-    updateButterfly();
-  }
-  if (shouldMilesFall) {
-    updateMiles();
-  }
+  updateButterfly();
+  updateMiles();
 }
 
 function drawBackground() {
@@ -123,6 +118,9 @@ function drawMiles(x, y, r, s) {
 }
 
 function updateMiles() {
+  if (!shouldMilesFall) {
+    return;
+  }
   miles.r += PI / 40;
 
   if (miles.s >= 0) {
@@ -197,6 +195,9 @@ function drawButterfly(x, y, s) {
 }
 
 function updateButterfly() {
+  if (!clicked) {
+    return;
+  }
   let sinY = 50 * sin((1 / 10) * butterfly.x);
   butterfly.y = sinY + butterfly.yOffset;
 
