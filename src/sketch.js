@@ -17,6 +17,7 @@ function draw() {
   background(220);
   drawBackground();
   drawButterfly(butterfly.x, butterfly.y, butterfly.s);
+  updateButterfly();
 }
 
 function drawBackground() {
@@ -94,4 +95,12 @@ function drawButterfly(x, y, s) {
   pop();
 
   pop();
+}
+
+function updateButterfly() {
+  let sinY = 50 * sin((1 / 10) * butterfly.x);
+  butterfly.y = sinY + butterfly.yOffset;
+
+  butterfly.x += 1;
+  butterfly.yOffset -= 1;
 }
