@@ -1,8 +1,14 @@
+let clicked = false;
+
 let butterfly = {
   x: 50,
   y: 300,
-  s: 0.3,
+  s: 0.5,
   yOffset: 300,
+  xmin: -255,
+  xmax: 115,
+  ymin: -145,
+  ymax: 100,
 };
 function setup() {
   // These lines are fitting our canvas
@@ -17,7 +23,12 @@ function draw() {
   background(220);
   drawBackground();
   drawButterfly(butterfly.x, butterfly.y, butterfly.s);
-  updateButterfly();
+  // helper to see mouse location
+  text("(" + mouseX + ", " + mouseY + ")", mouseX + 10, mouseY - 10);
+
+  if (clicked) {
+    updateButterfly();
+  }
 }
 
 function drawBackground() {
@@ -103,4 +114,19 @@ function updateButterfly() {
 
   butterfly.x += 1;
   butterfly.yOffset -= 1;
+}
+
+function mousePressed() {
+  let leftSide = butterfly.xmin * butterfly.s + butterfly.x;
+  let rightSide = butterfly.xmax * butterfly.s + butterfly.x;
+  let topSide = butterfly.ymin * butterfly.s + butterfly.y;
+  let botSide = butterfly.ymax * butterfly.s + butterfly.y;
+  if (
+    mouseX > leftSide &&
+    mouseX < rightSide &&
+    mouseY > topSide &&
+    mouseY < botSide
+  ) {
+    clicked = true;
+  }
 }
