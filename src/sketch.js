@@ -1,4 +1,5 @@
 let clicked = false;
+let shouldMilesFall = false;
 
 let butterfly = {
   x: 50,
@@ -37,6 +38,9 @@ function draw() {
 
   if (clicked) {
     updateButterfly();
+  }
+  if (shouldMilesFall) {
+    updateMiles();
   }
 }
 
@@ -116,6 +120,10 @@ function drawMiles(x, y, r) {
   pop();
 }
 
+function updateMiles() {
+  miles.r += PI / 40;
+}
+
 function drawButterfly(x, y, s) {
   // butterfly
   push();
@@ -188,6 +196,10 @@ function updateButterfly() {
 
   butterfly.x += 1;
   butterfly.yOffset -= 1;
+
+  if (butterfly.x >= miles.x) {
+    shouldMilesFall = true;
+  }
 }
 
 function mousePressed() {
