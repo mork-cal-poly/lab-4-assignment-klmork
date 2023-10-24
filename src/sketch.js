@@ -16,6 +16,7 @@ let miles = {
   x: 300,
   y: 400,
   r: 0,
+  s: 1,
 };
 
 function setup() {
@@ -31,7 +32,7 @@ function draw() {
   background(220);
   drawBackground();
   drawButterfly(butterfly.x, butterfly.y, butterfly.s);
-  drawMiles(miles.x, miles.y, miles.r);
+  drawMiles(miles.x, miles.y, miles.r, miles.s);
 
   // helper to see mouse location
   text("(" + mouseX + ", " + mouseY + ")", mouseX + 10, mouseY - 10);
@@ -55,9 +56,10 @@ function drawBackground() {
   triangle(20, 0, 400, 250, 400, 275);
 }
 
-function drawMiles(x, y, r) {
+function drawMiles(x, y, r, s) {
   push();
   translate(x, y);
+  scale(s);
   rotate(r);
 
   //draw head
@@ -122,6 +124,10 @@ function drawMiles(x, y, r) {
 
 function updateMiles() {
   miles.r += PI / 40;
+
+  if (miles.s >= 0) {
+    miles.s -= 0.005;
+  }
 }
 
 function drawButterfly(x, y, s) {
