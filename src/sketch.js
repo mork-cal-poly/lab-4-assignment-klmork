@@ -10,6 +10,13 @@ let butterfly = {
   ymin: -145,
   ymax: 100,
 };
+
+let miles = {
+  x: 300,
+  y: 400,
+  r: 0,
+};
+
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -23,6 +30,8 @@ function draw() {
   background(220);
   drawBackground();
   drawButterfly(butterfly.x, butterfly.y, butterfly.s);
+  drawMiles(miles.x, miles.y, miles.r);
+
   // helper to see mouse location
   text("(" + mouseX + ", " + mouseY + ")", mouseX + 10, mouseY - 10);
 
@@ -40,6 +49,71 @@ function drawBackground() {
   fill(107, 0, 230, 200); // dark purple
   triangle(-50, 200, 350, -150, 450, -170);
   triangle(20, 0, 400, 250, 400, 275);
+}
+
+function drawMiles(x, y, r) {
+  push();
+  translate(x, y);
+  rotate(r);
+
+  //draw head
+  fill(0);
+  noStroke();
+  ellipse(0, -155, 60, 75);
+  //eye ring
+  fill(255, 0, 0);
+  ellipse(-15, -160, 22, 17);
+  ellipse(15, -160, 22, 17);
+  //eyes
+  fill(255);
+  ellipse(-15, -160, 18, 13);
+  ellipse(15, -160, 18, 13);
+
+  //arms
+  fill(0);
+  ellipse(-40, -105, 50, 15);
+  ellipse(40, -105, 50, 15);
+  //hands
+  ellipse(-60, -105, 15, 15);
+  ellipse(60, -105, 15, 15);
+
+  //body miles
+  fill(0);
+  ellipse(0, -80, 50, 75);
+  //spider logo
+  stroke(255, 0, 0);
+  fill(255, 0, 0);
+  ellipse(0, -95, 10, 15);
+  //top
+  line(-15, -105, 0, -100);
+  line(15, -105, 0, -100);
+  //top-middle
+  line(-15, -100, 0, -100);
+  line(15, -100, 0, -100);
+  //bottom
+  line(-15, -95, 0, -95);
+  line(15, -95, 0, -95);
+  //bottom-middle
+  line(-15, -90, 0, -95);
+  line(15, -90, 0, -95);
+
+  noStroke();
+  //feet
+  fill(0);
+  ellipse(-15, -5, 20, 10);
+  ellipse(15, -5, 20, 10);
+  //legs
+  ellipse(-10, -30, 20, 50);
+  ellipse(10, -30, 20, 50);
+
+  // show origin
+  fill(0, 255, 255);
+  ellipse(0, 0, 10, 10);
+  stroke(255, 255, 0);
+  line(-100, 0, 100, 0);
+  stroke(0, 0, 255);
+  line(0, 100, 0, -100);
+  pop();
 }
 
 function drawButterfly(x, y, s) {
