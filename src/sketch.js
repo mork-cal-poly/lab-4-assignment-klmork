@@ -1,3 +1,9 @@
+let butterfly = {
+  x: 50,
+  y: 300,
+  s: 0.3,
+  yOffset: 300,
+};
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -10,7 +16,7 @@ function setup() {
 function draw() {
   background(220);
   drawBackground();
-  drawButterfly(200, 200, 0.3);
+  drawButterfly(butterfly.x, butterfly.y, butterfly.s);
 }
 
 function drawBackground() {
