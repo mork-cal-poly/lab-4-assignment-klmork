@@ -34,8 +34,6 @@ function draw() {
   drawButterfly(butterfly.x, butterfly.y, butterfly.s);
   drawMiles(miles.x, miles.y, miles.r, miles.s);
 
-  // helper to see mouse location
-  text("(" + mouseX + ", " + mouseY + ")", mouseX + 10, mouseY - 10);
   updateButterfly();
   updateMiles();
 }
