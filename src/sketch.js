@@ -19,6 +19,10 @@ let miles = {
   s: 1,
 };
 
+let clownPosX = -200
+
+let clownChange = 0;
+
 function setup() {
   // These lines are fitting our canvas
   // where we want in the DOM
@@ -33,7 +37,17 @@ function draw() {
   drawBackground();
   drawButterfly(butterfly.x, butterfly.y, butterfly.s);
   drawMiles(miles.x, miles.y, miles.r, miles.s);
+
+  drawClown(clownPosX, 100, 1, PI/2);
+
+  clownPosX = clownPosX + clownChange;
+
+  if (clownPosX >= 80) {
+    clownChange = 0;
+  }
+
   drawCreature(300,400,0.3)
+
 
   updateButterfly();
   updateMiles();
@@ -193,6 +207,69 @@ function drawButterfly(x, y, s) {
   pop();
 }
 
+function drawClown(x, y, s, r) {
+  push();
+  translate(x, y);
+  scale(s);
+  rotate(r)
+  
+  stroke(1);
+
+  //hair
+  fill(255, 150, 0);
+  ellipse(-15, -20, 50, 35);
+  ellipse(15, -20, 50, 35);
+  
+  //head
+  fill(250);
+  ellipse(0, 0, 60);
+  
+  //eyes
+  fill(0, 255, 0);
+  ellipse(-15, -5, 15, 20);
+  ellipse(15, -5, 15, 20);
+  fill(0);
+  ellipse(-15, -5, 5);
+  ellipse(15, -5, 5);
+  
+  //nose
+  fill(255, 0, 0);
+  ellipse(0, 0, 20);
+  
+  //legs
+  fill(50);
+  rect(-25, 115, 25, 85, 20);
+  rect(0, 115, 25, 85, 20);
+  fill(30);
+  arc(-12.5, 200, 25, 25, PI, 0);
+  arc(12.5, 200, 25, 25, PI, 0);
+  
+  //body
+  fill(245);
+  rect(-30, 30, 60, 90, 20);
+  
+  //jacket
+  fill(50);
+  rect(-30, 30, 20, 90, 10);
+  rect(10, 30, 20, 90, 10);
+
+  //bow
+  fill(220, 0, 0);
+  ellipse(0, 40, 10);
+  triangle(-5 ,40, -15, 33, -15, 47);
+  triangle(5, 40, 15, 33, 15, 47);
+  
+  //arms
+  fill(50);
+  rect(-50, 33, 20, 70, 20);
+  rect(30, 33, 20, 70, 20);
+  fill(241, 213, 160);
+  ellipse(-40, 105, 20);
+  ellipse(40, 105, 20);
+  
+  pop();
+}
+
 function updateButterfly() {
   if (!clicked) {
     return;
@@ -221,6 +298,13 @@ function mousePressed() {
   ) {
     clicked = true;
   }
+
+
+
+}
+
+function mouseClicked() {
+  clownChange = 10;
 }
 function drawCreature(x,y,s) {
     push();
