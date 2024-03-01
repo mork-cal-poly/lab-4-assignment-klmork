@@ -37,6 +37,7 @@ function draw() {
   drawBackground();
   drawButterfly(butterfly.x, butterfly.y, butterfly.s);
   drawMiles(miles.x, miles.y, miles.r, miles.s);
+  drawFish();
 
   drawClown(clownPosX, 100, 1, PI/2);
 
@@ -140,6 +141,46 @@ function updateMiles() {
     miles.s -= 0.005;
   }
 }
+
+function drawFish() {
+  push();
+
+  translate(100,200);
+  
+  scale(10);
+  stroke(0);
+  strokeWeight(1/25);
+  line(0,0, 4,-2.5);
+  fill(255,179,1);
+  beginShape();
+  vertex(4,-2.5);
+  vertex(3,-2);
+  vertex(5,-1);
+  vertex(7,-1);
+  vertex(9,-2);
+  vertex(10,-3); // tail point
+  vertex(9,-4);
+  vertex(7,-5);
+  vertex(5,-5);
+  vertex(3,-4);
+ // vertex()
+  endShape(CLOSE)
+ 
+  // tail
+  fill(255,179,1);
+  triangle(10,-3, 13, -5, 13,-1);
+ 
+   // eye
+  fill(0,255,0);
+  stroke(255);
+  strokeWeight(3/25);
+  circle(4.5,-3.5,.7);
+  
+  pop();
+
+}
+
+
 
 function drawButterfly(x, y, s) {
   // butterfly
